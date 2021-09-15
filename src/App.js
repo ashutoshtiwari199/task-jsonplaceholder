@@ -1,23 +1,26 @@
 import logo from './logo.svg';
 import './App.css';
+import {useState} from 'react'
+import Navbar from './components/Navbar';
+import { Route } from 'react-router-dom';
+import PostwithComments from './components/PostwithComments';
+import Posts from './components/Posts';
 
 function App() {
+
+  const [postDetail,setPostDetail]= useState({});
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="bg-gray-400 bg-opacity-25">
+    <Route exact path="/">
+      <Navbar/>
+    </Route>
+    <Route exact path ="/postwithcomments">
+      <PostwithComments postDetail={postDetail} />
+    </Route>
+    <Route exact path ="/posts">
+      <Posts setPostDetail={setPostDetail}/>
+    </Route>
     </div>
   );
 }
